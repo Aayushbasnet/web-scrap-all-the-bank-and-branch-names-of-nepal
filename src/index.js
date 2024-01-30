@@ -2,6 +2,13 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const ExcelJS = require("exceljs");
 
+/* replace the url with the url of the website you want to scrape
+    I have used the website https://www.financialnotices.com/a-class-bank.html to scrape the data 
+    of all the banks of A-class in Nepal
+*/
+
+const url = "https://www.financialnotices.com/a-class-bank.html";
+
 let bankInfo = [];
 
 async function extractLinks(url) {
@@ -65,8 +72,6 @@ async function getBankNamesWithUrl(url) {
 		throw error; // Re-throw the error to propagate it further
 	}
 }
-
-const url = "https://www.financialnotices.com/a-class-bank.html";
 
 async function getBankNames() {
 	try {
