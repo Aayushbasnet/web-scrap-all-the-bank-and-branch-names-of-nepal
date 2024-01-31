@@ -1,1 +1,5 @@
 node_modules/
+
+*.xlsx
+
+scraped_data.xlsx

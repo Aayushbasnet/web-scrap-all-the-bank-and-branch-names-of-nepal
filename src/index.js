@@ -33,8 +33,22 @@ async function extractLinks(url) {
 
 		links.push({ url: linkUrl, text: linkText });
 	});
+
+	let branchLocationUrl = "";
+	for(const link of links) {
+		const containsBranchLocations = /Branch(?:es|s)? Location(?:s|es)?/i.test(
+			link?.text || ""
+		);
+		if(containsBranchLocations) {
+			branchLocationUrl = link?.url;
+		} 
+	};
+	if(branchLocationUrl === "") {
+			return links[2]?.url ?? links[1]?.url ?? links[0]?.url ?? "";
+	} else {
+		return branchLocationUrl;
+	}
     
-	return links[2]?.url ?? links[1]?.url ?? links[0]?.url ?? "";
 };
 
 async function getBankNamesWithUrl(url) {
